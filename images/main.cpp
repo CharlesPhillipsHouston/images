@@ -16,7 +16,7 @@ written to count up observations and sort by satellite number
 #include <fstream>  // moving towards better C++ file handling
 // does NOT like fstream.h!!
 
-#define SATELLITE_LENGTH 50  // length of each line of satellite report
+#define SATELLITE_LENGTH 80  // length of each line of satellite report
 
 using namespace std;
 
