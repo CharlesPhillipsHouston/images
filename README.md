@@ -1,6 +1,6 @@
 # images
-this is a program to take observations and sort them by satellite number
-the input file has satellite number, date, time, Right Ascension, Declination, and some other numbers that I need to look up
+this is a program to take observations and sort them by satellite number\n
+The input file has satellite number, date, time, Right Ascension, Declination, and some other numbers that I need to look up
 this was started from "observations" which I thought was sorting observations but the other files
 were attempts that were not successful
 the idea is to sort various days of observations, where various satellites are imaged, and compile
