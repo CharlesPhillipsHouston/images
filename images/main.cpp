@@ -1,9 +1,9 @@
 /* standard stuff
- as of 3 aug 2021
+ as of 4 aug 2021
 written to count up observations and sort by satellite number
  based on "observations", this is the one that I really wanted these are real observations
  better output, columns have labels
-Mike fixed this version
+ this sort of works so far
  */
 
 #include <stdio.h>
@@ -71,7 +71,7 @@ public:
         //strncpy(satnumber, line, sizeof(satnumber));
        
        // scan Image line
-        sscanf(line, "%d %d %d %d %d %d %d %d", &satno, &date, &time, &right_ascension, &declination, &column_six, &magnitude, &column_eight);
+        sscanf(line, "%d   %d %d %d %d %d %d   %d", &satno, &date, &time, &right_ascension, &declination, &column_six, &magnitude, &column_eight);
      
     }  // end Image definition
     
@@ -120,23 +120,23 @@ int main()
     while (feof(spInputObs) == 0) // read in all Images
     {
         fgets(line, sizeof(line), spInputObs);  // get first line of Images
-        printf("the line: %s", line);  // debug
+        printf("the line: %s\n", line);  // debug
      
         satellites[i] = Image(line); //
           //printf("satnumber %s\t", satellites[i].satnumber);
-
+        
         i++;   // increment i
-          
+        
     }  // end of while loop, reads Images
  printf("\n");
     
     int numObs = i;
     qsort(&satellites[0], numObs, sizeof(Image), compareImagesSatelliteNumber);
     
-      fprintf(spOutputObs, "Satno \t Date \t Time \n"); // not the final desired information
+      fprintf(spOutputObs, "Satno \t Date \t Time \t RAAN\n"); // not the final desired information
     
     for(int i = 0; i < numObs; i++)
-        fprintf(spOutputObs, "%d\t %d\t %d\n", satellites[i].satno, satellites[i].date, satellites[i].time);
+        fprintf(spOutputObs, "%d\t %d\t %d %d\n", satellites[i].satno, satellites[i].date, satellites[i].time, satellites[i].right_ascension);
     
     fclose(spInputObs);
     fclose(spOutputObs);
