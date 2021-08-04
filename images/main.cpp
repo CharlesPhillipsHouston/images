@@ -133,10 +133,10 @@ int main()
     int numObs = i;
     qsort(&satellites[0], numObs, sizeof(Image), compareImagesSatelliteNumber);
     
-      fprintf(spOutputObs, "Satno \t Date \t Time \t RAAN\n"); // not the final desired information
+      fprintf(spOutputObs, "Satno \t Date \t Time \t Right Ascension \t Declination\n"); // not the final desired information
     
     for(int i = 0; i < numObs; i++)
-        fprintf(spOutputObs, "%d\t %d\t %d %d\n", satellites[i].satno, satellites[i].date, satellites[i].time, satellites[i].right_ascension);
+        fprintf(spOutputObs, "%d\t %d\t %d\t %d\t %d\n", satellites[i].satno, satellites[i].date, satellites[i].time, satellites[i].right_ascension, satellites[i].declination);
     
     fclose(spInputObs);
     fclose(spOutputObs);
