@@ -16,7 +16,7 @@ Mike fixed this version
 #include <fstream>  // moving towards better C++ file handling
 // does NOT like fstream.h!!
 
-#define SATELLITE_LENGTH 30  // length of each line of satellite report
+#define SATELLITE_LENGTH 50  // length of each line of satellite report
 
 using namespace std;
 
@@ -95,11 +95,12 @@ public:
  
 int compareImagesSatelliteNumber(const void * a, const void * b) // sort satellite number
 {
-//    if (((Image*)a)->satnumber  < ((Image*)b)->satnumber) return -1;
-//    if (((Image*)a)->satnumber == ((Image*)b)->satnumber) return  0;
-//    if (((Image*)a)->satnumber  > ((Image*)b)->satnumber) return  1;
+    if (((Image*)a)->satno  < ((Image*)b)->satno) return -1;
+    if (((Image*)a)->satno == ((Image*)b)->satno) return  0;
+    if (((Image*)a)->satno  > ((Image*)b)->satno) return  1;
 /** MSM - satnumber is an array of char's  NOT a number so < and > aren't really valid.  need to use strcmp instead **/
-    return strcmp((int char*)(((Image*)a)->satno), (int char*)(((Image*)b)->satno));
+  //  return strcmp((const char*)(((Image*)a)->satno), (const char*)(((Image*)b)->satno));
+    return 0;
 }
 
 int main()
@@ -132,10 +133,10 @@ int main()
     int numObs = i;
     qsort(&satellites[0], numObs, sizeof(Image), compareImagesSatelliteNumber);
     
-      fprintf(spOutputObs, "Satno \t Telescope \t Number Images \n");
+      fprintf(spOutputObs, "Satno \t Date \t Time \n"); // not the final desired information
     
     for(int i = 0; i < numObs; i++)
-        fprintf(spOutputObs, "%s\t %s\t %d\n", satellites[i].satnumber, satellites[i].telescope, satellites[i].images);
+        fprintf(spOutputObs, "%d\t %d\t %d\n", satellites[i].satno, satellites[i].date, satellites[i].time);
     
     fclose(spInputObs);
     fclose(spOutputObs);
