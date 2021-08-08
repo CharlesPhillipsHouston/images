@@ -78,6 +78,9 @@ public:
    void print(FILE* spOutputObs)  // print to output file for parameters
     { //if no file given prints to stdout (i.e. terminal)
         fprintf(spOutputObs, "Satno \t Date \t Time \n");
+  fprintf(spOutputObs, "21775, USA 71, NOSS"); // typical satellite tracked        fprintf(spOutputObs, "25034, USA 136, Trumpet 3"); // typical satellite tracked
+      fprintf(spOutputObs, "29249, USA 184, Improved Trumpet"); // typical satellite tracked
+
         fprintf(spOutputObs, "%d\t", satno);
         fprintf(spOutputObs, "%d\t", date);
         fprintf(spOutputObs, "%d\t", time);
