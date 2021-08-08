@@ -1,5 +1,5 @@
 /* standard stuff
- as of 4 aug 2021
+ as of 7 aug 2021
 written to count up observations and sort by satellite number
  based on "observations", this is the one that I really wanted these are real observations
  better output, columns have labels
@@ -38,8 +38,8 @@ public:
     int satno;  // satellite number
     int date;  // date of image
     int time;
-    int right_ascension; // of observation
-    int declination; // of observation
+    char right_ascension; // of observation
+    char declination; // of observation
     int column_six; // ?
     int magnitude; // magnitude maybe?
     int column_eight; // ?
@@ -71,21 +71,21 @@ public:
         //strncpy(satnumber, line, sizeof(satnumber));
        
        // scan Image line
-        sscanf(line, "%d   %d %d %d %d %d %d   %d", &satno, &date, &time, &right_ascension, &declination, &column_six, &magnitude, &column_eight);
+        sscanf(line, "%d   %d %d %s %s %d %d   %d", &satno, &date, &time, &right_ascension, &declination, &column_six, &magnitude, &column_eight);
      
     }  // end Image definition
     
    void print(FILE* spOutputObs)  // print to output file for parameters
     { //if no file given prints to stdout (i.e. terminal)
-        fprintf(spOutputObs, "Satno \t Images \n");
-        fprintf(spOutputObs, "%d\n", satno);
-        fprintf(spOutputObs, "%d\n", date);
-        fprintf(spOutputObs, "%d\n", time);
-        fprintf(spOutputObs, "%d\n", right_ascension);
-        fprintf(spOutputObs, "%d\n", declination);
-        fprintf(spOutputObs, "%d\n", column_six);
-        fprintf(spOutputObs, "%d\n", magnitude);
-        fprintf(spOutputObs, "%d\n", column_eight);
+        fprintf(spOutputObs, "Satno \t Date \t Time \n");
+        fprintf(spOutputObs, "%d\t", satno);
+        fprintf(spOutputObs, "%d\t", date);
+        fprintf(spOutputObs, "%d\t", time);
+     //   fprintf(spOutputObs, "%c\t", right_ascension);
+    //    fprintf(spOutputObs, "%c\t", declination);
+   //     fprintf(spOutputObs, "%d\t", column_six);
+   //     fprintf(spOutputObs, "%d\t", magnitude);
+    //    fprintf(spOutputObs, "%d\n", column_eight);
         
         //        fprintf(stdout, "", );
     }  // end of print function
@@ -133,10 +133,10 @@ int main()
     int numObs = i;
     qsort(&satellites[0], numObs, sizeof(Image), compareImagesSatelliteNumber);
     
-      fprintf(spOutputObs, "Satno \t Date \t Time \t Right Ascension \t Declination\n"); // not the final desired information
+      fprintf(spOutputObs, "Satno \t Date \t Time \n"); // not the final desired information
     
     for(int i = 0; i < numObs; i++)
-        fprintf(spOutputObs, "%d\t %d\t %d\t %d\t %d\n", satellites[i].satno, satellites[i].date, satellites[i].time, satellites[i].right_ascension, satellites[i].declination);
+        fprintf(spOutputObs, "%d\t %d\t %d\n", satellites[i].satno, satellites[i].date, satellites[i].time);
     
     fclose(spInputObs);
     fclose(spOutputObs);
