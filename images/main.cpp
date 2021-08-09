@@ -78,9 +78,6 @@ public:
    void print(FILE* spOutputObs)  // print to output file for parameters
     { //if no file given prints to stdout (i.e. terminal)
         fprintf(spOutputObs, "Satno \t Date \t Time \n");
-  fprintf(spOutputObs, "\n21775, USA 71, NOSS\n"); // typical satellite tracked
-        fprintf(spOutputObs, "25034, USA 136, Trumpet 3\n"); // typical satellite tracked
-      fprintf(spOutputObs, "29249, USA 184, Improved Trumpet\n"); // typical satellite tracked
 
         fprintf(spOutputObs, "%d\t", satno);
         fprintf(spOutputObs, "%d\t", date);
@@ -124,7 +121,7 @@ int main()
     while (feof(spInputObs) == 0) // read in all Images
     {
         fgets(line, sizeof(line), spInputObs);  // get first line of Images
-        printf("the line: %s\n", line);  // debug
+     //   printf("the line: %s\n", line);  // debug
      
         satellites[i] = Image(line); //
           //printf("satnumber %s\t", satellites[i].satnumber);
@@ -137,7 +134,12 @@ int main()
     int numObs = i;
     qsort(&satellites[0], numObs, sizeof(Image), compareImagesSatelliteNumber);
     
-      fprintf(spOutputObs, "Satno \t Date \t Time \n"); // not the final desired information
+    // below is the fprintf that does something
+    
+    fprintf(spOutputObs, "Satno \t Date \t Time \n"); // not the final desired information
+    fprintf(spOutputObs, "21775, USA 71, NOSS\n"); // typical satellite tracked
+      fprintf(spOutputObs, "25034, USA 136, Trumpet 3\n"); // typical satellite tracked
+    fprintf(spOutputObs, "29249, USA 184, Improved Trumpet\n"); // typical satellite tracked
     
     for(int i = 0; i < numObs; i++)
         fprintf(spOutputObs, "%d\t %d\t %d\n", satellites[i].satno, satellites[i].date, satellites[i].time);
