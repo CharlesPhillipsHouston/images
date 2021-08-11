@@ -140,6 +140,8 @@ int main()
     fprintf(spOutputObs, "21775, USA 71, NOSS\n"); // typical satellite tracked
       fprintf(spOutputObs, "25034, USA 136, Trumpet 3\n"); // typical satellite tracked
     fprintf(spOutputObs, "29249, USA 184, Improved Trumpet\n"); // typical satellite tracked
+    fprintf(spOutputObs, "23097, USA ?, Trumpet 1\n"); // typical satellite tracked
+    fprintf(spOutputObs, "23609, USA 112, Trumpet 2\n"); // typical satellite tracked
     
     for(int i = 0; i < numObs; i++)
         fprintf(spOutputObs, "%d\t %d\t %d\n", satellites[i].satno, satellites[i].date, satellites[i].time);
